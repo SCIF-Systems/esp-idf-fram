@@ -19,6 +19,16 @@ if(CONFIG_FRAM_HAL_MOCK_ENABLED)
     list(APPEND srcs "src/fram_hal_mock.c")
 endif()
 
+set(requires esp_timer freertos)
+if(CONFIG_FRAM_HAL_SPI_ENABLED)
+    list(APPEND requires driver)
+endif()
+
+set(priv_requires "")
+if(NOT CONFIG_IDF_TARGET_LINUX)
+    list(APPEND priv_requires esp_rom)
+endif()
+
 idf_component_register(
     SRCS ${srcs}
     INCLUDE_DIRS
@@ -26,9 +36,7 @@ idf_component_register(
     PRIV_INCLUDE_DIRS
         "src"
     REQUIRES
-        driver
-        esp_timer
-        freertos
+        ${requires}
     PRIV_REQUIRES
-        esp_rom
+        ${priv_requires}
 )

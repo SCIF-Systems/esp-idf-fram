@@ -15,3 +15,16 @@ jobs:
           . /opt/esp/idf/export.sh
           cd examples/fram_basic
           idf.py build
+
+  test:
+    runs-on: ubuntu-latest
+    container: espressif/idf:release-v5.5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run tests
+        run: |
+          . /opt/esp/idf/export.sh
+          cd test_apps/test_fram
+          idf.py set-target linux
+          idf.py build
+          ./build/test_fram.elf
