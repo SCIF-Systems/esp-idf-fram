@@ -20,8 +20,8 @@ tools/openocd-esp32
 .*.swo
 *~
 
-# Ignore build folder
-/build
+# Ignore build folders
+build/
 
 # Ignore files built by Visual Studio/Visual Micro
 [Dd]ebug/
