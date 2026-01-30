@@ -1,0 +1,56 @@
+menu "FRAM Library Configuration"
+
+config FRAM_HAL_SPI_ENABLED
+    bool "Enable SPI HAL backend (FM25V02A)"
+    default y
+
+config FRAM_HAL_MOCK_ENABLED
+    bool "Enable Mock HAL backend (for testing)"
+    default n
+
+config FRAM_SPI_DEFAULT_FREQ_HZ
+    int "Default SPI clock (Hz)"
+    default 20000000
+    depends on FRAM_HAL_SPI_ENABLED
+
+config FRAM_SPI_DEFAULT_MODE
+    int "Default SPI mode (0 or 3)"
+    range 0 3
+    default 0
+    depends on FRAM_HAL_SPI_ENABLED
+
+config FRAM_SPI_MAX_TRANSFER
+    int "Max SPI data bytes per transaction (excludes opcode+addr)"
+    range 1 512
+    default 256
+    depends on FRAM_HAL_SPI_ENABLED
+
+config FRAM_DEFAULT_MUTEX_TIMEOUT_MS
+    int "Default mutex timeout (ms)"
+    default 1000
+
+config FRAM_DEFAULT_ERROR_THRESHOLD
+    int "Consecutive errors before unhealthy"
+    default 3
+
+config FRAM_RING_MAX_PAYLOAD
+    int "Maximum ring buffer payload size"
+    range 1 512
+    default 128
+
+config FRAM_VSLOT_MAX_PAYLOAD
+    int "Maximum vslot payload size"
+    range 1 1024
+    default 256
+
+config FRAM_KVS_ENABLED
+    bool "Enable Key-Value Store primitive"
+    default y
+
+config FRAM_KVS_MAX_VALUE
+    int "Maximum KVS value length"
+    range 1 4096
+    default 1024
+    depends on FRAM_KVS_ENABLED
+
+endmenu

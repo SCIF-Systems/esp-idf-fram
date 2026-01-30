@@ -1,0 +1,17 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-example:
+    runs-on: ubuntu-latest
+    container: espressif/esp-idf:release-v5.5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build example
+        run: |
+          . /opt/esp/idf/export.sh
+          cd examples/fram_basic
+          idf.py build

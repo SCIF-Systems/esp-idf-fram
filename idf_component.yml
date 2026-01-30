@@ -1,0 +1,6 @@
+name: "fram"
+version: "0.1.0"
+description: "FRAM (FM25V02A) storage component"
+license: "Apache-2.0"
+dependencies:
+  idf: ">=5.5"
