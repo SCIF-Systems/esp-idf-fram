@@ -1,2 +1,0 @@
-source /Users/gary/Developer/esp-idf-fram/examples/fram_basic/build/bootloader/gdbinit/symbols
-source /Users/gary/Developer/esp-idf-fram/examples/fram_basic/build/bootloader/gdbinit/connect
