@@ -7,7 +7,7 @@ on:
 jobs:
   build-example:
     runs-on: ubuntu-latest
-    container: espressif/esp-idf:release-v5.5
+    container: espressif/idf:release-v5.5
     steps:
       - uses: actions/checkout@v4
       - name: Build example
