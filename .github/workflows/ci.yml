@@ -5,15 +5,16 @@ on:
   pull_request:
 
 jobs:
-  build-example:
+  build:
     runs-on: ubuntu-latest
     container: espressif/idf:release-v5.5
     steps:
       - uses: actions/checkout@v4
-      - name: Build example
+      - name: Verify compiles build for esp32s3
         run: |
           . /opt/esp/idf/export.sh
           cd examples/fram_basic
+          idf.py set-target esp32s3
           idf.py build
 
   test:
@@ -25,6 +26,6 @@ jobs:
         run: |
           . /opt/esp/idf/export.sh
           cd test_apps/test_fram
-          idf.py set-target linux
+          idf.py --preview set-target linux
           idf.py build
           ./build/test_fram.elf
